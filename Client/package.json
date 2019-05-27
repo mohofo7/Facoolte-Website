@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
   },
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -45,6 +44,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "2.2.6",
+    "cookie": "^0.4.0",
+    "cookies": "^0.7.3",
+    "hls.js": "^0.12.4",
     "moment": "2.24.0",
     "node-sass": "4.11.0",
     "nouislider": "13.1.1",
@@ -54,10 +56,12 @@
     "react-datetime": "2.16.3",
     "react-dom": "16.8.4",
     "react-google-maps": "9.4.5",
+    "react-hls": "0.0.8",
     "react-player": "^1.11.0",
     "react-router-dom": "4.3.1",
     "react-scripts": "3.0.1",
     "reactstrap": "7.1.0",
+    "video-react": "^0.13.7"
   },
   "devDependencies": {
     "@types/googlemaps": "3.30.18",

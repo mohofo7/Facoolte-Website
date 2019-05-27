@@ -40,7 +40,7 @@ class Register extends React.Component {
       password: event.target.pass.value,
       email: event.target.email.value
     }
-    axios.post('http://192.168.1.106:8400/users/register', body, {headers: headers})
+    axios.post('http://193.176.242.103:8400/users/register', body, {headers: headers})
 
             .then((response) => {
                 console.log("Sucseed!")

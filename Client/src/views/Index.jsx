@@ -19,7 +19,7 @@ class Index extends React.Component {
     this.setState({
       isLoading: true
     });
-    axios.get('http://192.168.1.106:8400/videos')
+    axios.get('http://193.176.242.103:8400/videos')
       .then((response)=> {
         let res = []
         for(let i = 0;i <= Math.floor(response.data.length/4);i++){

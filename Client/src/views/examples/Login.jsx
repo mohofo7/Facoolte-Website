@@ -37,7 +37,7 @@ class Login extends React.Component {
       username: event.target.email.value,
       password: event.target.pass.value
     }
-    axios.post('http://192.168.1.106:8400/users/login', body, {headers: headers})
+    axios.post('http://193.176.242.103:8400/users/login', body, {headers: headers})
 
             .then((response) => {
                 if(response.status === 200){

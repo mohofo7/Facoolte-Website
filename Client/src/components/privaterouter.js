@@ -25,7 +25,7 @@ class PrivateRoute extends React.Component{
       let header = {
         'Authorization': 'Bearer ' + cookie.load('token')
       }
-      axios.get('http://192.168.1.106:8400/users/checkToken', {headers: header})
+      axios.get('http://193.176.242.103:8400/users/checkToken', {headers: header})
               .then((response) => {
                   if(response.status === 200){
                     if(this._isMounted){

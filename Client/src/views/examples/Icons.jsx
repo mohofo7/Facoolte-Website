@@ -30,7 +30,7 @@ class Icons extends React.Component {
       isLoading: true,
       videoID: this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1)
     });
-    let url = 'http://192.168.1.106:8400/video/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
+    let url = 'http://193.176.242.103:8400/video/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
     console.log(url)
     axios.get(url)
       .then((response)=> {
