@@ -22,7 +22,7 @@ import {
   toast
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Config from 'Config.js'
 
 
 const axios = require('axios')
@@ -55,7 +55,8 @@ class Icons extends React.Component {
       isLoading: true,
       videoID: this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1)
     });
-    let url = 'http://192.168.1.106:8400/video/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
+    let url = '/video/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
+    url = Config.serverAdd.concat(url)
     let header = {
       'Authorization': 'Bearer ' + cookie.load('token')
     }
@@ -102,7 +103,8 @@ class Icons extends React.Component {
     e.preventDefault()
     console.log("buy")
     this.loadingToggle()
-    let url = 'http://192.168.1.106:8400/buyVideo/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
+    let url = '/buyVideo/'.concat(this.props.location.pathname.slice(this.props.location.pathname.lastIndexOf('/') + 1))
+    url = Config.serverAdd.concat(url)
     let header = {
       'Authorization': 'Bearer ' + cookie.load('token')
     }

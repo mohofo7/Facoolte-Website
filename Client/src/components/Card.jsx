@@ -29,7 +29,7 @@ class Cards extends React.Component {
     this.setState(()=>{
       return{
         redirectToReferrer: true,
-        pathToRedirect:'/admin/icons/' + this.state.id
+        pathToRedirect:'/admin/video/' + this.state.id
       }
     })
   }

@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import cookie from 'react-cookies'
 import Loading from 'components/loading'
+import Config from 'Config.js'
 const axios = require('axios')
 
 class PrivateRoute extends React.Component{
@@ -26,7 +27,7 @@ class PrivateRoute extends React.Component{
       let header = {
         'Authorization': 'Bearer ' + cookie.load('token')
       }
-      axios.get('http://192.168.1.106:8400/users/checkToken', {headers: header})
+      axios.get(Config.serverAdd + '/users/checkToken', {headers: header})
               .then((response) => {
                   if(response.status === 200){
                     if(this._isMounted){

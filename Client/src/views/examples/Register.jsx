@@ -21,6 +21,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 import {
   Redirect
 } from 'react-router-dom'
+import Config from 'Config.js'
 
 const axios = require('axios');
 class Register extends React.Component {
@@ -76,7 +77,7 @@ class Register extends React.Component {
       password: event.target.pass.value,
       email: event.target.email.value
     }
-    axios.post('http://192.168.1.106:8400/users/register', body, {headers: headers})
+    axios.post(Config.serverAdd + '/users/register', body, {headers: headers})
 
             .then((response) => {
                 console.log("Sucseed!")

@@ -18,6 +18,7 @@ import {
 import {
   Redirect
 } from 'react-router-dom'
+import Config from 'Config.js'
 import cookie from 'react-cookies'
 const axios = require('axios')
 
@@ -85,7 +86,7 @@ class AdminNavbar extends React.Component {
       'Authorization': 'Bearer ' + cookie.load('token')
     }
     let body = {}
-    axios.post('http://192.168.1.106:8400/logout', body, {
+    axios.post(Config.serverAdd + '/logout', body, {
         headers: headers
       })
 
