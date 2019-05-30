@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ef2b025eba8b4ac91ace1b2c8ba65544",
+    "revision": "1e7a3c0d3a3a3b8e33c8f2fe8877a1a0",
     "url": "/index.html"
   },
   {
-    "revision": "f895215da686a8387660",
-    "url": "/static/css/2.b650302e.chunk.css"
+    "revision": "e2a50044e53e0dcc54b4",
+    "url": "/static/css/2.39017165.chunk.css"
   },
   {
-    "revision": "7eab2450013035b09fb9",
-    "url": "/static/css/main.e44e59f4.chunk.css"
+    "revision": "244d4a80be01db1c8fe8",
+    "url": "/static/css/main.dacec776.chunk.css"
   },
   {
-    "revision": "f895215da686a8387660",
-    "url": "/static/js/2.667aff83.chunk.js"
+    "revision": "e2a50044e53e0dcc54b4",
+    "url": "/static/js/2.02612c04.chunk.js"
   },
   {
-    "revision": "7eab2450013035b09fb9",
-    "url": "/static/js/main.7f0fce1b.chunk.js"
+    "revision": "244d4a80be01db1c8fe8",
+    "url": "/static/js/main.0db5604f.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -26,18 +26,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e859a7c7b793d2316ee3e537fe392592",
     "url": "/static/media/Facoolte-Logo.e859a7c7.svg"
-  },
-  {
-    "revision": "368685db949cddcd901ba54559a727d9",
-    "url": "/static/media/angular.368685db.jpg"
-  },
-  {
-    "revision": "f38ddea9dedadea03c5d43c596dac13f",
-    "url": "/static/media/argon-react.f38ddea9.png"
-  },
-  {
-    "revision": "ab904daa548967670847fc3929bf50f4",
-    "url": "/static/media/bootstrap.ab904daa.jpg"
   },
   {
     "revision": "48461ea4e797c9774dabb4a0440d2f56",
@@ -118,37 +106,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f82ec6ba2dc4181db2af35c499462840",
     "url": "/static/media/nucleo-icons.f82ec6ba.ttf"
-  },
-  {
-    "revision": "e2582654b8e7b6c285d5017df6427d73",
-    "url": "/static/media/profile-cover.e2582654.jpg"
-  },
-  {
-    "revision": "c4eb3d0be0cf5a2d156a123bdf7fb40d",
-    "url": "/static/media/react.c4eb3d0b.jpg"
-  },
-  {
-    "revision": "e7c82e5c569db9d9761b13ef1384f702",
-    "url": "/static/media/sketch.e7c82e5c.jpg"
-  },
-  {
-    "revision": "53033970a416368da35794389680266f",
-    "url": "/static/media/team-1-800x800.53033970.jpg"
-  },
-  {
-    "revision": "dcfcf3b77210fe85b0abc8260e6fa70e",
-    "url": "/static/media/team-2-800x800.dcfcf3b7.jpg"
-  },
-  {
-    "revision": "497bb3590e24c9f8b645864bfffc39b8",
-    "url": "/static/media/team-3-800x800.497bb359.jpg"
-  },
-  {
-    "revision": "230071328b705f8686cabd26a85ed6a5",
-    "url": "/static/media/team-4-800x800.23007132.jpg"
-  },
-  {
-    "revision": "9378e368a757bd0c7ca556a0258cb527",
-    "url": "/static/media/vue.9378e368.jpg"
   }
 ]);
