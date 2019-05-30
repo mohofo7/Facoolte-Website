@@ -55,7 +55,6 @@ class Login extends React.Component {
         return{
         authenticated:true
       }})
-    console.log(value)
   }
 
   onReCaptchaExpired(){
@@ -90,7 +89,6 @@ class Login extends React.Component {
             .then((response) => {
                 if(response.status === 200){
                   let token = response.data.token
-                  console.log(token)
                   cookie.save('token' , token)
                   this.setState(()=>{
                     return{

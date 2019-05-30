@@ -10,7 +10,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-
+import Config from "Config.js"
 import Cards from "components/Card.jsx"
 import Loading from "../components/loading";
 const axios = require('axios')
@@ -54,7 +54,7 @@ class Index extends React.Component {
     this.setState({
       isLoading: true
     });
-    axios.get('http://192.168.1.106:8400/videos')
+    axios.get(Config.serverAdd + '/videos')
       .then((response)=> {
         let res = []
         for(let i = 0;i <= Math.floor(response.data.length/4);i++){
