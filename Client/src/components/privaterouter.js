@@ -4,6 +4,7 @@ import {
     Redirect,
 } from 'react-router-dom'
 import cookie from 'react-cookies'
+import Loading from 'components/loading'
 const axios = require('axios')
 
 class PrivateRoute extends React.Component{
@@ -17,22 +18,23 @@ class PrivateRoute extends React.Component{
     this._isMounted = true    
     this.setState(()=>{
       return{
-        isLoading:true
+        isLoading:true,
+        user:{}
       }
     })
     if(cookie.load('token')){
-      console.log('token is here')
       let header = {
         'Authorization': 'Bearer ' + cookie.load('token')
       }
-      axios.get('http://193.176.242.103:8400/users/checkToken', {headers: header})
+      axios.get('http://192.168.1.106:8400/users/checkToken', {headers: header})
               .then((response) => {
                   if(response.status === 200){
                     if(this._isMounted){
                       this.setState(() => {
                         return {
                           isAuthenticated: true,
-                          isLoading: false
+                          isLoading: false,
+                          user:response.data.user
                         }
                       })
                     }
@@ -49,7 +51,7 @@ class PrivateRoute extends React.Component{
                   
               })
               .catch((error) => {
-                console.log(error)
+                cookie.remove('token')
                 this.setState(() => {
                   return {
                     isLoading: false
@@ -58,7 +60,6 @@ class PrivateRoute extends React.Component{
               })
     }
     else{
-      console.log('else')
       this.setState(() => {
         return {
           isLoading: false
@@ -72,20 +73,18 @@ class PrivateRoute extends React.Component{
   }
   render(){
     let {component: Component, ...rest} = this.props
-    console.log('private rendered')
     if(!this.state.isLoading){
-      console.log(this.state.isAuthenticated)
       return(
         <Route {...rest} render={(props) => (
           this.state.isAuthenticated === true
-            ? <Component {...props} />
+            ? <Component user={this.state.user} {...props} />
             : <Redirect to={{
               pathname: '/auth/login'
               }} />
         )} />
     )}
     else
-      return<p>loading</p>
+      return<Loading />
   }
 }
 export default PrivateRoute;

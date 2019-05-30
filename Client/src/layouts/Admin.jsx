@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 // reactstrap components
-import { Container } from "reactstrap";
+import { Container,Row , Col } from "reactstrap";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import AuthFooter from "components/Footers/AuthFooter.jsx"
@@ -29,27 +29,29 @@ class Admin extends React.Component {
       }
     });
   };
-  getBrandText = path => {
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          routes[i].layout + routes[i].path
-        ) !== -1
-      ) {
-        return routes[i].name;
-      }
-    }
-    return "Brand";
-  };
   render() {
-    console.log('admin rendered')
     return (
       <>
         <div className="main-content" ref="mainContent">
-          <AdminNavbar
-            {...this.props}
-            brandText={this.getBrandText(this.props.location.pathname)}
-          />
+          
+          <AdminNavbar user={this.props.user}/>
+
+          <div className="header bg-gradient-dark py-7 py-lg-8">
+            <Container>
+              <div className="header-body text-center mb-7">
+                <Row className="justify-content-center">
+                  <Col lg="5" md="6">
+                    <h1 className="text-white persian">فاکولته</h1>
+                    <p className="text-lead text-light persian">
+                      شبکه آموزشی آنلاین
+                      فاکولته در زبان فرانسوی به معنای دانشکده است و این کلمه در گذشته در ایران رواج داشته است
+                    </p>
+                  </Col>
+                </Row>
+              </div>
+            </Container>
+          </div>
+
           <Switch>{this.getRoutes(routes)}</Switch>
           <Container fluid>
             <AuthFooter />

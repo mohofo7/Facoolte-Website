@@ -40,6 +40,6 @@ router.post('/logout', auth, async (req, res)=> {
 })
 
 router.get('/users/checkToken', auth, async (req , res) => {
-    res.status(200).send('Authenticated!')
+    res.status(200).send({user: req.user.getPublicProfile()})
 })
 module.exports = router

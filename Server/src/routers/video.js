@@ -2,6 +2,7 @@ const express = require('express')
 const request = require('request')
 const path = require('path')
 const auth = require('../middleware/auth')
+const User = require('../models/user')
 const router = new express.Router()
 
 getSubject = (desc) => {
@@ -50,9 +51,8 @@ router.get('/videos', async (req, res) => {
     await request.get(options, callback)
 })
 
-router.get('/video/:videoID', async (req , res) => {
+router.get('/video/:videoID', auth, async (req , res) => {
     let url = 'https://napi.arvancloud.com/vod/2.0/videos/'.concat(req.params.videoID)
-    console.log(req.params.videoID)
     let options = {
         url: url,
         headers: {
@@ -62,19 +62,62 @@ router.get('/video/:videoID', async (req , res) => {
     };
 
     
-    function callback(error, response, body) {
+    async function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
             var info = JSON.parse(body);
+            const user = await User.findOne({email: req.user.email , 'videos.video' : info.data.id})
             var data = {
                 id: info.data.id,
                 title: info.data.title,
                 description: getDescribe(info.data.description),
                 thumbnail_url: info.data.thumbnail_url,
-                video_url: info.data.video_url,
                 price: getPrice(info.data.description),
-                teacher: getTeacher(info.data.description)
+                teacher: getTeacher(info.data.description),
+                permit: false
+            }
+            if(user){
+                data = {
+                    id: info.data.id,
+                    title: info.data.title,
+                    description: getDescribe(info.data.description),
+                    thumbnail_url: info.data.thumbnail_url,
+                    price: getPrice(info.data.description),
+                    teacher: getTeacher(info.data.description),
+                    permit: true,
+                    video_url: info.data.video_url
+                }
             }
             res.status(200).send(JSON.stringify(data))
+        }
+    }
+    await request.get(options, callback)
+})
+
+router.get('/buyVideo/:videoID', auth,async (req, res)=>{
+    
+    let url = 'https://napi.arvancloud.com/vod/2.0/videos/'.concat(req.params.videoID)
+    let options = {
+        url: url,
+        headers: {
+            'Authorization': 'Apikey 5e93a343-3215-477e-80b6-ba30ba83c2ed',
+            'accept': 'application/json'
+        }
+    };
+
+
+    async function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var info = JSON.parse(body)
+            let price =  getPrice(info.data.description)
+
+            if(req.user.getCredit()*1000 >= price){
+                await req.user.spendCredit(price/1000)
+                await req.user.addNewVideo(info.data.id)
+                res.status(200).send("successful")
+            }
+            else{
+                res.status(406).send()
+            }
         }
     }
     await request.get(options, callback)

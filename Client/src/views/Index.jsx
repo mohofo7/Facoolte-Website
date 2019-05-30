@@ -1,35 +1,70 @@
 import React from "react";
 import {
   Container,
+  Form,
+  FormGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
+  InputGroup,
   Row,
   Col
 } from "reactstrap";
 
 import Cards from "components/Card.jsx"
-import Header from "components/Headers/Header.jsx";
+import Loading from "../components/loading";
 const axios = require('axios')
 class Index extends React.Component {
-  state = {
-    numOfVideo: 0,
-    videosData: [],
-    isLoading: false
+
+  constructor(props){
+    super(props)
+    this.onChange = this.onChange.bind(this)
+    this.state = {
+      numOfVideo: 0,
+      videosData: [],
+      videosDataToShow: [],
+      isLoading: false
+    }
+  }
+  
+
+  onChange(e) {
+    let res = []
+    this.state.videosData.forEach((item)=>{
+      let tmp = item.filter((i)=>{
+        return i.description.includes(e.target.value) || i.title.includes(e.target.value)
+      })
+      tmp.forEach((i)=>{
+        res.push(i)
+      })
+    })
+    let result = []
+    for (let i = 0; i <= Math.floor(res.length / 4); i++) {
+      result.push(res.slice(i * 4, (i + 1) * 4))
+    }
+    console.log(result)
+    this.setState(()=>{
+      return{
+        videosDataToShow: result
+      }
+    })
   }
 
   componentDidMount(){
     this.setState({
       isLoading: true
     });
-    axios.get('http://193.176.242.103:8400/videos')
+    axios.get('http://192.168.1.106:8400/videos')
       .then((response)=> {
         let res = []
         for(let i = 0;i <= Math.floor(response.data.length/4);i++){
           res.push(response.data.slice(i*4 , (i+1)*4))
         }
-        console.log(res)
         this.setState(() => {
           return {
             numOfVideo: response.data.length,
             videosData:res,
+            videosDataToShow:res,
             isLoading: false
           }
         })
@@ -44,15 +79,31 @@ class Index extends React.Component {
   }
   render() {
     if(this.state.isLoading){
-      return <p>Loading</p>
+      return (
+        <div align="center">
+        <Loading/>
+      </div>
+      )
     }
+    
     return (
       <>
-        <Header />
-        {/* Page content */}
-        <Container className="mt--7" fluid>
-            {this.state.videosData.map(arr =>
-              <Row key={this.state.videosData.indexOf(arr)}>
+        <Container className="mt--8" fluid>
+            <Form onChange={this.onChange} onSubmit={this.search} className="navbar-search navbar-search-dark mb-3">
+              <FormGroup className="mb-0">
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="fas fa-search" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input placeholder="جست و جو" name="search" type="search" className="persian pr-0" />
+                </InputGroup>
+              </FormGroup>
+            </Form>
+
+            {this.state.videosDataToShow.map(arr =>
+              <Row key={this.state.videosDataToShow.indexOf(arr)}>
                 {arr.map(data => 
                   <Col
                     key={data.id}

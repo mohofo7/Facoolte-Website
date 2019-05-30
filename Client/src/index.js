@@ -12,7 +12,6 @@ import PrivateRouter from "components/privaterouter"
 
 class App extends React.Component {
   render(){
-    console.log('app rendered')
     return (
     <BrowserRouter>
       <Switch>

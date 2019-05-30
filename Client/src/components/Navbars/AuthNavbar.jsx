@@ -31,14 +31,6 @@ class AdminNavbar extends React.Component {
             <UncontrolledCollapse navbar toggler="#navbar-collapse-main">
               <div className="navbar-collapse-header d-md-none">
                 <Row>
-                  <Col className="collapse-brand" xs="6">
-                    <Link to="/">
-                      <img
-                        alt="..."
-                        src={require("assets/img/brand/argon-react.png")}
-                      />
-                    </Link>
-                  </Col>
                   <Col className="collapse-close" xs="6">
                     <button
                       className="navbar-toggler"
@@ -50,13 +42,7 @@ class AdminNavbar extends React.Component {
                   </Col>
                 </Row>
               </div>
-              <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavLink className="nav-link-icon" to="/" tag={Link}>
-                    <i className="ni ni-planet" />
-                    <span className="nav-link-inner--text persian">صفحه اصلی</span>
-                  </NavLink>
-                </NavItem>
+              <Nav className="mr-auto persianWithrtl pr-1" navbar>
                 <NavItem>
                   <NavLink
                     className="nav-link-icon"

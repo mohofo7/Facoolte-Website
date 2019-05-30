@@ -40,6 +40,11 @@ const userSchema = new mongoose.Schema({
             required: true,
 
         }
+    }],
+    videos:[{
+        video: {
+            type: String
+        }
     }]
 })
 
@@ -50,8 +55,17 @@ userSchema.methods.getPublicProfile = function () {
     
     delete userObject.tokens
     delete userObject.password
-
+    delete userObject.videos
+    delete userObject.username
+    delete userObject._id
+    delete userObject.__v
     return userObject
+}
+
+userSchema.methods.getCredit = function () {
+    const user = this
+    const userObject = user.toObject()
+    return userObject.credit
 }
 
 userSchema.methods.generateAuthToken = async function(){
@@ -61,6 +75,18 @@ userSchema.methods.generateAuthToken = async function(){
     user.tokens = user.tokens.concat({ token })
     await user.save()
     return token
+}
+
+userSchema.methods.addNewVideo = async function(video){
+    const user = this
+    user.videos = user.videos.concat({ video })
+    await user.save()
+}
+
+userSchema.methods.spendCredit = async function(value){
+    const user = this
+    user.credit = user.credit - value
+    await user.save()
 }
 
 userSchema.statics.findByCredentials = async (username , password)=>{

@@ -12,7 +12,12 @@ import {
   Row,
   Col
 } from "reactstrap";
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
 import cookie from 'react-cookies'
+import ReCAPTCHA from "react-google-recaptcha"
 import {
   Redirect
 } from 'react-router-dom'
@@ -24,13 +29,44 @@ class Register extends React.Component {
   constructor(props){
     super(props)
     this.registerSubmit = this.registerSubmit.bind(this)
+    this.onReCaptchaExpired = this.onReCaptchaExpired.bind(this)
+    this.onReCaptchaChange = this.onReCaptchaChange.bind(this)
     this.state = {
-      redirectToReferrer: false
+      redirectToReferrer: false,
+      authenticated: false
     }
+  }
+
+  onReCaptchaChange(value){
+    if(value != null)
+      this.setState(()=>{
+        return{
+        authenticated:true
+      }})
+    console.log(value)
+  }
+
+  onReCaptchaExpired(){
+    this.setState(() => {
+      return {
+        authenticated: false
+      }
+    })
   }
 
   registerSubmit(event, errors, values) {
     event.preventDefault()
+    if(!this.state.authenticated){
+      toast.error(<p className="persianWithrtl">ReCaptcha بد درستی وارد نشده!</p>, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false
+      });
+      return
+    }
     let headers = {
       'Content-Type': 'application/json'
     }
@@ -40,7 +76,7 @@ class Register extends React.Component {
       password: event.target.pass.value,
       email: event.target.email.value
     }
-    axios.post('http://193.176.242.103:8400/users/register', body, {headers: headers})
+    axios.post('http://192.168.1.106:8400/users/register', body, {headers: headers})
 
             .then((response) => {
                 console.log("Sucseed!")
@@ -57,7 +93,14 @@ class Register extends React.Component {
                 }
             })
             .catch((error) => {
-                console.log(error)
+                toast.error(<p className="persianWithrtl">ایمیل وارد شده تکراری است</p>, {
+                  position: "top-center",
+                  autoClose: 3000,
+                  hideProgressBar: true,
+                  closeOnClick: false,
+                  pauseOnHover: false,
+                  draggable: false
+                });
             })
   }
 
@@ -66,6 +109,15 @@ class Register extends React.Component {
       return <Redirect to = '/' />
     return (
       <>
+        <ToastContainer
+          position="top-center"
+          autoClose={false}
+          newestOnTop
+          closeOnClick={false}
+          rtl
+          pauseOnVisibilityChange={false}
+          draggable={false}
+        />
         <Col lg="6" md="8">
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
@@ -127,6 +179,13 @@ class Register extends React.Component {
                     </div>
                   </Col>
                 </Row>
+                <div align="center" className="mr--2 mt-3">
+                <ReCAPTCHA
+                  sitekey = "6LcKSaYUAAAAADR64yw6EWtBHTmfGxlfyY-bb8sU"
+                  onChange={this.onReCaptchaChange}
+                  onExpired={this.onReCaptchaExpired}
+                />
+                </div>
                 <div className="text-center">
                   <Button 
                   className="mt-4 persian btn-block" 
