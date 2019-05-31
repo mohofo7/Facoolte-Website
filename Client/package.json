@@ -23,6 +23,7 @@
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
   },
   "scripts": {
+    "serve": "serve -s build -l 8070",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

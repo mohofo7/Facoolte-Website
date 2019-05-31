@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.dacec776.chunk.css",
-    "main.js": "/static/js/main.17d24412.chunk.js",
-    "main.js.map": "/static/js/main.17d24412.chunk.js.map",
+    "main.css": "/static/css/main.11518a7c.chunk.css",
+    "main.js": "/static/js/main.0523a1c6.chunk.js",
+    "main.js.map": "/static/js/main.0523a1c6.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.39017165.chunk.css": "/static/css/2.39017165.chunk.css",
     "static/js/2.02612c04.chunk.js": "/static/js/2.02612c04.chunk.js",
     "static/js/2.02612c04.chunk.js.map": "/static/js/2.02612c04.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bf6e28838ba5811d25e06bd4a1540975.js": "/precache-manifest.bf6e28838ba5811d25e06bd4a1540975.js",
+    "precache-manifest.1086f9032af6870666ab9d7638ffd2cb.js": "/precache-manifest.1086f9032af6870666ab9d7638ffd2cb.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.39017165.chunk.css.map": "/static/css/2.39017165.chunk.css.map",
-    "static/css/main.dacec776.chunk.css.map": "/static/css/main.dacec776.chunk.css.map",
+    "static/css/main.11518a7c.chunk.css.map": "/static/css/main.11518a7c.chunk.css.map",
     "static/media/Facoolte-Logo.svg": "/static/media/Facoolte-Logo.e859a7c7.svg",
     "static/media/all.min.css": "/static/media/fa-solid-900.815694de.woff",
     "static/media/nucleo.css": "/static/media/nucleo-icons.f82ec6ba.ttf"

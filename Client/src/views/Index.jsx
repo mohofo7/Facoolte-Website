@@ -42,7 +42,6 @@ class Index extends React.Component {
     for (let i = 0; i <= Math.floor(res.length / 4); i++) {
       result.push(res.slice(i * 4, (i + 1) * 4))
     }
-    console.log(result)
     this.setState(()=>{
       return{
         videosDataToShow: result

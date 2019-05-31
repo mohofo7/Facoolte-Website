@@ -25,7 +25,6 @@ class Cards extends React.Component {
   }
   goToWatch(e){
     e.preventDefault()
-    console.log(this.state.id)
     this.setState(()=>{
       return{
         redirectToReferrer: true,
